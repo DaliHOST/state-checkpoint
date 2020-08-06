@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Interval from "./interval"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  state = {
+    Person: {
+      fullName: "Mohamed Ali Bouzaiene",
+      bio: "a motivated student",
+      imgSrc: "/me.jpg",
+      profession: "student"
+    },
+    show: false
+  };
+
+  toggle = () => {
+    this.setState({ show: !this.state.show })
+  }
+
+
+  render() {
+    return ([
+      <div style={{textAlign:'center'}}>
+      <button style={{textAlign:'center'}} onClick={this.toggle}>show</button>
+      </div>,
+      this.state.show ? ( 
+        <div style={{ textAlign:"center" }}>
+          <br /><img src="/me.jpg" style={{width:300}}/>
+          <h1>{this.state.Person.fullName}</h1>
+          <h2>{this.state.Person.bio}</h2>
+          <h3>{this.state.Person.profession}</h3>
+          <Interval/>
+        </div>
+      ) : null
+    ])
+
+  }
 }
-
 export default App;
